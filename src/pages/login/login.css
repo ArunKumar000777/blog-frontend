@@ -1,0 +1,70 @@
+.login {
+    width: 100%;
+    height: calc(100vh - 50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(255,255,255, .1),rgba(255,255,255, .1)) ,url('https://images.pexels.com/photos/1883386/pexels-photo-1883386.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    background-size: cover;
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    /* align-items: center; */
+}
+
+.login__formTitle {
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: 500;
+}
+
+.login__form > label {
+}
+
+.login__form > input {
+    margin: 15px 0;
+    padding: 8px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+.login__button {
+    margin-top: 15px;
+    border: none;
+    width: 150px;
+    align-self: center;
+    padding: 8px 12px;
+    background-color: lightcoral;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
+
+.login__button:disabled {
+    background-color: rgba(251, 153, 117, 0.889);
+    cursor: not-allowed;
+}
+
+.registerButton{
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    margin-top: 15px;
+    border: none;
+    align-self: center;
+    padding: 6px 12px;
+    background-color: teal;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
+
+::-webkit-input-placeholder {
+    padding-left: 7px;
+  }

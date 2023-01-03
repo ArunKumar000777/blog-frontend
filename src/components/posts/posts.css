@@ -1,0 +1,9 @@
+.posts {
+    flex: 9;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-top: 50px;
+}

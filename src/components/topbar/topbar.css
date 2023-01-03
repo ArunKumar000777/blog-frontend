@@ -1,0 +1,90 @@
+.topBar {
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    font-family: "Josefin Sans", sans-serif;
+    z-index: 100;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.topBar__left {
+    display: flex;
+    height: 50px;
+    align-items: center;
+    flex: 1;
+    gap: 8px;
+}
+.socialMedia__icons {
+    width: 25px;
+    height: 25;
+    cursor: pointer;
+    color: rgba(68, 68, 68, 0.867);
+}
+
+.topList {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    justify-content: center;
+    gap: 30px;
+}
+.topList__item {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(68, 68, 68, 0.867);
+    cursor: pointer;
+}
+
+.topBar__center {
+    display: flex;
+    color: black;
+    flex: 2;
+    justify-content: center;
+}
+
+.userImage {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.searchIcon {
+    width: 25px;
+    height: 25px;
+    color: rgba(68, 68, 68, 0.867);
+    cursor: pointer;
+}
+
+.topBar__right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    justify-content: center;
+}
+
+/* @media (max-width: 768px) {
+    .topBar__left {
+        display: none;
+    }
+    .topList {
+        background-color: red;
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 600px) {
+   
+} */
