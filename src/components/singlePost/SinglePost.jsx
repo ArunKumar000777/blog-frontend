@@ -4,7 +4,7 @@ import { Edit, Delete } from "@mui/icons-material";
 import { Link, useLocation } from "react-router-dom";
 import axiox from "axios";
 import { Context } from "../../context/Context";
-import axios from "axios";
+import { axiosInstance } from "../../config";
 
 const SinglePost = () => {
     const location = useLocation();
@@ -18,7 +18,7 @@ const SinglePost = () => {
 
     useEffect(() => {
         const getpost = async () => {
-            const res = await axiox.get("/posts/" + path);
+            const res = await axiosInstance.get("/posts/" + path);
             setPost(res.data);
             setTitle(res.data.title);
             setDesc(res.data.desc);
@@ -29,14 +29,14 @@ const SinglePost = () => {
 
     const handleDelete = async () => {
         try {
-            await axios.delete(`/posts/${post._id}`, { data: { username: user.username } });
+            await axiosInstance.delete(`/posts/${post._id}`, { data: { username: user.username } });
             window.location.replace("/");
         } catch (error) {}
     };
 
     const handleUpdate = async () => {
         try {
-            await axios.put(`/posts/${post._id}`, {
+            await axiosInstance.put(`/posts/${post._id}`, {
                 username: user.username,
                 title: title,
                 desc: desc,

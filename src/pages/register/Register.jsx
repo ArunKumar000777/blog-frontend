@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./register.css";
-import axios from "axios";
+import { axiosInstance } from "../../config";
 
 const Register = () => {
     const [username, setUserName] = useState("");
@@ -10,9 +10,9 @@ const Register = () => {
     const [error, setError] = useState(false);
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(false)
+        setError(false);
         try {
-            const res = await axios.post("http://localhost:5000/api/auth/register", {
+            const res = await axiosInstance.post("auth/register", {
                 username,
                 email,
                 password,
@@ -46,7 +46,7 @@ const Register = () => {
                     Login
                 </Link>
             </button>
-           {error && <span className="wrong">something went wrong</span> } 
+            {error && <span className="wrong">something went wrong</span>}
         </div>
     );
 };

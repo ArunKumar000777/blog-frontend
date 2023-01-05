@@ -1,11 +1,9 @@
-import axios from "axios";
 import React, { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import { LoginFailure, LoginStart, LoginSuccess } from "../../context/Actions";
 import { Context } from "../../context/Context";
 import { publicRequest } from "../../requestMethods";
 import "./login.css";
-
 
 const Login = () => {
     const userRef = useRef();
@@ -20,7 +18,7 @@ const Login = () => {
                 username: userRef.current.value,
                 password: passwordRef.current.value,
             });
-            dispatch(LoginSuccess(res.data))
+            dispatch(LoginSuccess(res.data));
             // dispatch( {type:"LOGIN_SUCCESS",payload:res.data});
         } catch (error) {
             dispatch(LoginFailure());

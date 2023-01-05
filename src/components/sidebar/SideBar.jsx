@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import "./sidebar.css";
 import { Facebook, Twitter, Pinterest, Instagram, Search } from "@mui/icons-material";
-import axios from "axios";
+
+import { axiosInstance } from "../../config";
 
 const SideBar = () => {
-    const [cats , setCats] = useState([])
-    useEffect(()=>{
-        const getCats = async ()=>{
-            const res = await axios.get('/categories')
-            setCats(res.data)
-        }
-        getCats()
-    },[])
-    // console.log(cats);
+    const [cats, setCats] = useState([]);
+    useEffect(() => {
+        const getCats = async () => {
+            const res = await axiosInstance.get("/categories");
+            setCats(res.data);
+        };
+        getCats();
+    }, []);
+    console.log(cats);
 
     return (
         <div className="sidebar">
@@ -31,11 +32,11 @@ const SideBar = () => {
             <div className="sidebar__items">
                 <span className="sidebar__title">CATEGORIES</span>
                 <ul className="sidebarUl">
-                    {cats.map(c=> (
-                        <li key={c._id} className="sidebarLi__item">{c.name}</li>
+                    {cats.map((c) => (
+                        <li key={c._id} className="sidebarLi__item">
+                            {c.name}
+                        </li>
                     ))}
-                    
-                    
                 </ul>
             </div>
             <div className="sidebar__items">
