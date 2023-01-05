@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./register.css";
 import { axiosInstance } from "../../config";
 
@@ -8,6 +8,7 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [error, setError] = useState(false);
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(false);
@@ -18,7 +19,8 @@ const Register = () => {
                 password,
             });
             // console.log(res);
-            res.data && window.location.replace("/login");
+            // res.data && window.location.replace("/login");
+            navigate("/login");
         } catch (error) {
             setError(true);
             // console.log(error);
