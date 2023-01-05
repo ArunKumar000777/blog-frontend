@@ -3,12 +3,13 @@ import "./topbar.css";
 import { Facebook, Twitter, Pinterest, Instagram, Search } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
+import { LS } from "../../config";
 
 const TopBar = () => {
     const { user, dispatch } = useContext(Context);
     // console.log(user);
     // const PF = "http://localhost:5000/images/"
-    const serverPublic = "http://localhost:5000/images/";
+    const serverPublic = LS;
     // const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
     // console.log(serverPublic);
     // http://localhost:5000/images

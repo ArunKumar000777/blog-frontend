@@ -5,6 +5,7 @@ import UserIcon from "@mui/icons-material/AccountCircle";
 import { useContext } from "react";
 import { Context } from "../../context/Context";
 import { publicRequest } from "../../requestMethods";
+import { LS } from "../../config";
 const Settings = () => {
     const { user, dispatch } = useContext(Context);
     // console.log(user);
@@ -13,7 +14,7 @@ const Settings = () => {
     const [email, setEmail] = useState(user.email);
     // const [password, setPassword] = useState(null);
     const [success, setSuccess] = useState(false);
-    const PF = "http://localhost:5000/images/";
+    const PF = LS;
 
     const handleSubmit = async (e) => {
         e.preventDefault();

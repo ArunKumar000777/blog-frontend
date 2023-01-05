@@ -15,9 +15,11 @@ function App() {
     const { user } = useContext(Context);
     return (
         <BrowserRouter>
-            <ScrollToTop/>
+            <ScrollToTop />
             <TopBar />
-            <Routes> 
+            <Routes
+                basename="/blog-frontend"
+            >
                 <Route path="/" element={<Home />} />
                 <Route path="write" element={user ? <Write /> : <Register />} />
                 <Route path="login" element={user ? <Navigate to="/" /> : <Login />} />

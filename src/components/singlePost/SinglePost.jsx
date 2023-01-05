@@ -2,15 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import "./singlePost.css";
 import { Edit, Delete } from "@mui/icons-material";
 import { Link, useLocation } from "react-router-dom";
-import axiox from "axios";
 import { Context } from "../../context/Context";
-import { axiosInstance } from "../../config";
+import { LS, axiosInstance } from "../../config";
 
 const SinglePost = () => {
     const location = useLocation();
     const path = location.pathname.split("/")[2];
     const [post, setPost] = useState({});
-    const PF = "http://localhost:5000/images/";
+    const PF = LS;
     const { user } = useContext(Context);
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
