@@ -3,6 +3,8 @@ import "./write.css";
 import AddIcon from "@mui/icons-material/Add";
 import { Context } from "../../context/Context";
 import { publicRequest } from "../../requestMethods";
+import { useNavigate } from "react-router-dom";
+
 const Write = () => {
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
@@ -10,7 +12,7 @@ const Write = () => {
     const { user } = useContext(Context);
     const [lag, setLag] = useState(false);
     console.log(user);
-
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
         const newPost = {
@@ -33,8 +35,9 @@ const Write = () => {
         }
         try {
             const res = await publicRequest.post("/posts", newPost);
-            setLag(!lag)
-            window.location.replace("/post/" + res.data._id);
+            setLag(!lag);
+            // window.location.replace("/post/" + res.data._id);
+            res.data && navigate("/post/" + res.data._id)
         } catch (error) {
             console.log(error);
         }

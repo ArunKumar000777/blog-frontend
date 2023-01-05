@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./singlePost.css";
 import { Edit, Delete } from "@mui/icons-material";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Context } from "../../context/Context";
 import { LS, axiosInstance } from "../../config";
 
@@ -14,7 +14,7 @@ const SinglePost = () => {
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
     const [updateMode, setUpdateMode] = useState(false);
-
+    const navigate = useNavigate();
     useEffect(() => {
         const getpost = async () => {
             const res = await axiosInstance.get("/posts/" + path);
@@ -29,7 +29,8 @@ const SinglePost = () => {
     const handleDelete = async () => {
         try {
             await axiosInstance.delete(`/posts/${post._id}`, { data: { username: user.username } });
-            window.location.replace("/");
+            // window.location.replace("/");
+            navigate("/");
         } catch (error) {}
     };
 
