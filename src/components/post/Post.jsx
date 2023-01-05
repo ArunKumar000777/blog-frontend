@@ -1,9 +1,11 @@
 import React from "react";
 import "./post.css";
 import {Link} from "react-router-dom"
+import { LS } from "../../config";
 
 const Post = ({ post }) => {
-    const PF = "http://localhost:5000/images/"
+    // const PF = "http://localhost:5000/images/"
+    const PF = LS
     return (
         <div className="post">
             <Link to={`/post/${post._id}`}>
