@@ -8,6 +8,7 @@ const Write = () => {
     const [desc, setDesc] = useState("");
     const [file, setFile] = useState(null);
     const { user } = useContext(Context);
+    const [lag, setLag] = useState(false);
     console.log(user);
 
     const handleSubmit = async (e) => {
@@ -32,6 +33,7 @@ const Write = () => {
         }
         try {
             const res = await publicRequest.post("/posts", newPost);
+            setLag(!lag)
             window.location.replace("/post/" + res.data._id);
         } catch (error) {
             console.log(error);
