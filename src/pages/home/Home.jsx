@@ -8,13 +8,14 @@ import { useLocation } from "react-router-dom";
 
 const Home = () => {
     const [posts, setPosts] = useState([]);
+    console.log('arun');
 
     const {search} = useLocation()
     console.log(search)
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const res = await axios.get("/posts" + search);
+            const res = await axios.get("http://localhost:5000/api/posts" + search);
             setPosts(res.data);
         };
         fetchPosts();
