@@ -13,7 +13,6 @@
 .write__form {
     padding-top: 50px;
     position: relative;
-
 }
 
 .write__formGroup {
@@ -48,9 +47,8 @@
 
 .write__text {
     font-size: 16px;
-    height: 100vh;
+    /* height: 100vh; */
 }
-
 
 .write__submit {
     position: absolute;

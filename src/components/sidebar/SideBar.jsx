@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import "./sidebar.css";
 import { Facebook, Twitter, Pinterest, Instagram, Search } from "@mui/icons-material";
 
-import { axiosInstance } from "../../config";
+import { publicRequest } from "../../requestMethods";
 
 const SideBar = () => {
     const [cats, setCats] = useState([]);
     useEffect(() => {
         const getCats = async () => {
-            const res = await axiosInstance.get("/categories");
+            const res = await publicRequest.get("/categories");
             setCats(res.data);
         };
         getCats();
     }, []);
-    console.log(cats);
+    // console.log(cats);
 
     return (
         <div className="sidebar">

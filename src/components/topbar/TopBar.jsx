@@ -7,7 +7,7 @@ import { LS } from "../../config";
 
 const TopBar = () => {
     const { user, dispatch } = useContext(Context);
-    // console.log(user);
+    console.log(user);
     // const PF = "http://localhost:5000/images/"
     const serverPublic = LS;
     // const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -60,8 +60,8 @@ const TopBar = () => {
                     <Link to="/settings">
                         <img
                             className="userImage"
-                            src={user?.profilePic ? serverPublic + user.profilePic : serverPublic + "defaultProfile.png"}
-                            alt="topbarPi"
+                            src={user?.profilePic}
+                            alt="DP"
                         />
                         {/* <img className="userImage" src={serverPublic + "defaultProfile.png"} alt="profile image" /> */}
                     </Link>

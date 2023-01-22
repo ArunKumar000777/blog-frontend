@@ -1,15 +1,15 @@
 import React from "react";
 import "./post.css";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import { LS } from "../../config";
 
 const Post = ({ post }) => {
     // const PF = "http://localhost:5000/images/"
-    const PF = LS
+    const PF = LS;
     return (
         <div className="post">
             <Link to={`/post/${post._id}`}>
-            {post.photo && <img className="post__image" src={PF + post.photo} alt="postimage" />}
+                {post.image && <img className="post__image" src={post.image} alt="postimage" />}
             </Link>
 
             <div className="post__infoContainer">
@@ -18,13 +18,16 @@ const Post = ({ post }) => {
                         <span className="post__category">{c.name}</span>
                     ))}
                 </div>
-                <Link to={`/post/${post._id}`}>
-                <span className="post__title">{post.title}</span>
-                </Link>
-                
-                <hr />
-                <span className="post__date">{new Date(post.createdAt).toDateString()}</span>
-                <p className="post__desc">{post.desc}</p>
+                <div className="post__details">
+                    <span className="post__auther">{post.username}</span>
+                    <span className="post__date">{new Date(post.createdAt).toDateString()}</span>
+                </div>
+                <div className="post__title__desc__container">
+                    <Link to={`/post/${post._id}`}>
+                        <span className="post__title">{post.title}</span>
+                    </Link>
+                    <p className="post__desc">{post.desc}</p>
+                </div>
             </div>
         </div>
     );

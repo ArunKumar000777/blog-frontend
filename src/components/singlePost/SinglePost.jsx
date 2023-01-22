@@ -48,7 +48,7 @@ const SinglePost = () => {
     return (
         <div className="singlePost">
             <div className="singlePost__wrapper">
-                {post.photo && <img src={PF + post.photo} alt="singlepostimage" className="singlePost__img" />}
+                {post.image && <img src={post.image} alt="singlepostimage" className="singlePost__img" />}
                 {updateMode ? (
                     <input
                         type="text"

@@ -1,9 +1,11 @@
 .posts {
+    background: rgb(250,250,250);
     flex: 9;
     display: flex;
     flex-wrap: wrap;
-    gap: 50px;
-    justify-content: space-between;
-    padding: 0 20px;
+    row-gap: 40px;
+    justify-content: center;
+    column-gap: 70px;
+    padding: 40px 20px;
     margin-top: 50px;
 }

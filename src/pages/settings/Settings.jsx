@@ -5,6 +5,9 @@ import UserIcon from "@mui/icons-material/AccountCircle";
 import { useContext } from "react";
 import { Context } from "../../context/Context";
 import { publicRequest } from "../../requestMethods";
+import Loader from "../../components/loader/Loader";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { LS } from "../../config";
 const Settings = () => {
     const { user, dispatch } = useContext(Context);
@@ -14,38 +17,74 @@ const Settings = () => {
     const [email, setEmail] = useState(user.email);
     // const [password, setPassword] = useState(null);
     const [success, setSuccess] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const notify = () => {
+        toast("user profile has been updated", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    };
+    console.log(username);
     const PF = LS;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         dispatch({ type: "UPDATE_START" });
-        const updatedUser = {
-            userId: user._id,
-            username,
-            // password,
-            email,
-        };
-        if (file) {
-            const data = new FormData();
-            const fileName = Date.now() + file.name;
-            data.append("name", fileName);
-            data.append("file", file);
-            updatedUser.profilePic = fileName;
-
-            try {
-                await publicRequest.post("/upload", data);
-            } catch (error) {
-                // console.log(error);
-            }
-        }
+        setLoading(true);
         try {
-            const res = await publicRequest.put("/users/" + user._id, updatedUser);
-            setSuccess(true);
-            dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
+            let formData = new FormData();
+            formData.append("profilePic", file);
+            formData.append("username", username);
+            formData.append("email", email);
+            formData.append("userId", user._id);
+
+            const res = await publicRequest.put("/users/" + user._id, formData);
+            dispatch({ type: "UPDATE_SUCCESS", payload: res.data.updateProfile });
+            res.data && setLoading(false);
+            res.data.message && notify();
+            console.log(res.data.updateProfile);
         } catch (error) {
             dispatch({ type: "UPDATE_FAILURE" });
+            console.log(error);
         }
     };
+
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     dispatch({ type: "UPDATE_START" });
+    //     const updatedUser = {
+    //         userId: user._id,
+    //         username,
+    //         // password,
+    //         email,
+    //     };
+    //     if (file) {
+    //         const data = new FormData();
+    //         const fileName = Date.now() + file.name;
+    //         data.append("name", fileName);
+    //         data.append("file", file);
+    //         updatedUser.profilePic = fileName;
+
+    //         try {
+    //             await publicRequest.post("/upload", data);
+    //         } catch (error) {
+    //             // console.log(error);
+    //         }
+    //     }
+    //     try {
+    //         const res = await publicRequest.put("/users/" + user._id, updatedUser);
+    //         setSuccess(true);
+    //         dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
+    //     } catch (error) {
+    //         dispatch({ type: "UPDATE_FAILURE" });
+    //     }
+    // };
 
     return (
         <div className="settings">
@@ -54,10 +93,10 @@ const Settings = () => {
                     <span className="settings__updateTitle">Update Your Account</span>
                     <span className="settings__deleteTitle">Delete Account</span>
                 </div>
-                <form action="" className="settings__form" onSubmit={handleSubmit}>
+                <form className="settings__form" onSubmit={handleSubmit}>
                     <label>Profile Picture</label>
                     <div className="settings__pp">
-                        <img className="settings__ppImg" src={file ? URL.createObjectURL(file) : PF + user.profilePic} />
+                        <img className="settings__ppImg" src={file ? URL.createObjectURL(file) : user?.profilePic} />
                         <label htmlFor="fileInput">
                             <div className="settings__ppIcon">
                                 <UserIcon className="userIcon" sx={{ fontSize: "35px" }} />
@@ -67,6 +106,7 @@ const Settings = () => {
                                 id="fileInput"
                                 style={{ display: "none" }}
                                 onChange={(e) => setFile(e.target.files[0])}
+                                name="profilePic"
                             />
                         </label>
                     </div>
@@ -87,6 +127,19 @@ const Settings = () => {
                 </form>
             </div>
             <Sidebar />
+            {loading ? <Loader /> : null}
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </div>
     );
 };

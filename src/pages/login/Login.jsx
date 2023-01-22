@@ -1,9 +1,10 @@
 import React, { useContext, useRef } from "react";
+import "./login.css";
 import { Link } from "react-router-dom";
 import { LoginFailure, LoginStart, LoginSuccess } from "../../context/Actions";
 import { Context } from "../../context/Context";
 import { publicRequest } from "../../requestMethods";
-import "./login.css";
+import { Puff } from "react-loader-spinner";
 
 const Login = () => {
     const userRef = useRef();
@@ -25,11 +26,24 @@ const Login = () => {
         }
     };
 
-
     return (
         <div className="login">
+            {isFetching && (
+                <div className="loader__login">
+                    <Puff
+                        height="50px"
+                        width="50px"
+                        radius={1}
+                        color="#4d83a9"
+                        ariaLabel="puff-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        visible={true}
+                    />
+                </div>
+            )}
             <form className="login__form" onSubmit={handleSubmit}>
-                <h1 className="login__formTitle">Login</h1>
+                <h1 className="login__formTitle">Login </h1>
                 <label>Username</label>
                 <input type="text" placeholder="Enter your username..." ref={userRef} />
                 <label>Password</label>

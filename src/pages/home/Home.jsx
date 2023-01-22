@@ -11,6 +11,7 @@ const Home = () => {
 
     const { search } = useLocation();
     // console.log(search)
+    // console.log(posts)
 
     useEffect(() => {
         const fetchPosts = async () => {

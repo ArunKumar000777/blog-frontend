@@ -4,6 +4,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { Context } from "../../context/Context";
 import { publicRequest } from "../../requestMethods";
 import { useNavigate } from "react-router-dom";
+import Loader from "../../components/loader/Loader";
 
 const Write = () => {
     const [title, setTitle] = useState("");
@@ -11,38 +12,60 @@ const Write = () => {
     const [file, setFile] = useState(null);
     const { user } = useContext(Context);
     const [lag, setLag] = useState(false);
-    console.log(user);
+    const [loading, setLoading] = useState(false);
+    console.log(file);
+
+    // console.log(user);
     const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const newPost = {
-            username: user.username,
-            title,
-            desc,
-        };
-        if (file) {
-            const data = new FormData();
-            const fileName = Date.now() + file.name;
-            data.append("name", fileName);
-            data.append("file", file);
-            newPost.photo = fileName;
+        setLoading(true);
 
-            try {
-                await publicRequest.post("/upload", data);
-            } catch (error) {
-                console.log(error);
-            }
-        }
         try {
-            const res = await publicRequest.post("/posts", newPost);
-            setLag(!lag);
-            // window.location.replace("/post/" + res.data._id);
-            res.data && navigate("/post/" + res.data._id)
+            let formData = new FormData();
+            formData.append("image", file);
+            formData.append("title", title);
+            formData.append("username", user.username);
+            formData.append("desc", desc);
+
+            const res = await publicRequest.post("/posts", formData);
+            res.data &&  setLoading(false);
+            res.data && navigate("/post/" + res.data.newPost._id);
+            console.log(res);
         } catch (error) {
             console.log(error);
         }
+       
     };
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     const newPost = {
+    //         username: user.username,
+    //         title,
+    //         desc,
+    //     };
+    //     if (file) {
+    //         const data = new FormData();
+    //         const fileName = Date.now() + file.name;
+    //         data.append("name", fileName);
+    //         data.append("file", file);
+    //         newPost.photo = fileName;
 
+    //         try {
+    //             await publicRequest.post("/upload", data);
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     }
+    //     try {
+    //         const res = await publicRequest.post("/posts", newPost);
+    //         setLag(!lag);
+    //         res.data && navigate("/post/" + res.data._id)
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
     return (
         <div className="write">
             {file && <img className="write__img" src={URL.createObjectURL(file)} alt="" />}
@@ -59,6 +82,8 @@ const Write = () => {
                         id="fileInput"
                         style={{ display: "none" }}
                         onChange={(e) => setFile(e.target.files[0])}
+                        accept="image/*"
+                        name="image"
                     />
                     <input
                         type="text"
@@ -80,6 +105,9 @@ const Write = () => {
                     Publish
                 </button>
             </form>
+            {
+                loading ? (<Loader/>) : null
+            }
         </div>
     );
 };

@@ -64,7 +64,12 @@
     color: white;
     cursor: pointer;
 }
+.loader__login{
+    position: absolute;
+}
 
 ::-webkit-input-placeholder {
     padding-left: 7px;
   }
+
+  
