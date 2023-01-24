@@ -28,7 +28,7 @@ const SinglePost = () => {
 
     const handleDelete = async () => {
         try {
-            await axiosInstance.delete(`/posts/${post._id}`, { data: { username: user.username } });
+            await axiosInstance.delete(`/posts/${post._id}`, { data: { userId: user._id } });
             // window.location.replace("/");
             navigate("/");
         } catch (error) {}
@@ -60,7 +60,7 @@ const SinglePost = () => {
                 ) : (
                     <h1 className="singlePost__title">
                         {title}
-                        {post.username === user?.username && (
+                        {post.userId === user?._id && (
                             <div className="singlePost__edit">
                                 <Edit
                                     sx={{ fontSize: "20px", color: "teal", marginRight: "10px", cursor: "pointer" }}

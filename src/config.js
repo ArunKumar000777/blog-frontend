@@ -5,7 +5,6 @@ export const axiosInstance = axios.create({
 })
 
 export const LS = 'https://blog-app-api-b3n3.onrender.com/images/'
-// baseURL:'http://localhost:5000/api/'
 
 // import axios from 'axios'
 

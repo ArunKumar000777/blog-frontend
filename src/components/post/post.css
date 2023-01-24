@@ -3,9 +3,9 @@
     height: 400px;
     background-color: #ffffff;
     border-radius: 10px;
-    -webkit-box-shadow: 6px 7px 11px -3px rgba(0,0,0,0.19);
-    -moz-box-shadow: 6px 7px 11px -3px rgba(0,0,0,0.19);
-    box-shadow: 6px 7px 11px -3px rgba(0,0,0,0.19);
+    -webkit-box-shadow: 6px 7px 11px -3px rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 6px 7px 11px -3px rgba(0, 0, 0, 0.19);
+    box-shadow: 6px 7px 11px -3px rgba(0, 0, 0, 0.19);
 }
 
 .post__image {
@@ -47,7 +47,7 @@
     color: rgba(28, 27, 27, 0.785);
     display: inline-block;
 }
-.post__title::first-letter{
+.post__title::first-letter {
     text-transform: capitalize;
 }
 
@@ -70,7 +70,7 @@
 .post__auther {
     color: #444;
 }
-.post__auther::first-letter{
+.post__auther::first-letter {
     text-transform: capitalize;
 }
 
@@ -88,4 +88,20 @@
     width: 100%;
     padding: 0 5px;
     margin-top: 10px;
+}
+
+.menu__icon {
+    display: none;
+}
+
+.auther__name{ 
+    color: black;
+    letter-spacing: .6px;
+}
+
+
+@media screen and (max-width: 600px) {
+    .post {
+        width: 100%;
+    }
 }

@@ -34,4 +34,8 @@
 }
 
 
-
+@media screen and (max-width:600px) {
+    .headerTitle__lg{
+        top: 23%;
+    }
+}

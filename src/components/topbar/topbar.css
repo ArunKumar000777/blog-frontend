@@ -16,16 +16,8 @@
 
 a {
     text-decoration: none;
-    color: black;
 }
 
-.topBar__left {
-    display: flex;
-    height: 50px;
-    align-items: center;
-    flex: 1;
-    gap: 8px;
-}
 .socialMedia__icons {
     width: 25px;
     height: 25;
@@ -48,13 +40,35 @@ a {
     cursor: pointer;
 }
 
-.topBar__center {
+.navlinks__container {
     display: flex;
-    color: black;
     flex: 2;
-    justify-content: center;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
+.topBar__left {
+    display: flex;
+    height: 50px;
+    align-items: center;
+    flex: 1;
+    gap: 8px;
+}
+.topBar__center {
+    width: 100%;
+    display: flex;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    margin-right: 200px;
+}
+
+.topBar__right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    justify-content: center;
+}
 .userImage {
     width: 40px;
     height: 40px;
@@ -70,24 +84,90 @@ a {
     cursor: pointer;
 }
 
-.topBar__right {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    justify-content: center;
+.close__icon {
+    display: none;
+}
+.menu__icon {
+    display: none;
+}
+.mobile__dp {
+    display: none;
 }
 
-/* @media (max-width: 768px) {
+@media screen and (max-width: 900px) {
+}
+
+@media screen and (max-width: 600px) {
+    .mobile__dp {
+        display: block;
+        position: absolute;
+        top: 5px;
+        right: 10px;
+    }
+    .topBar {
+        padding: 0;
+    }
     .topBar__left {
         display: none;
     }
-    .topList {
-        background-color: red;
+    .navlinks__container {
+        display: flex;
         flex-direction: column;
+        flex: 0;
+        justify-content: space-around;
+        position: absolute;
+        top: 0;
+        width: 200px;
+        padding: 15px 0;
+        transition: transform 0.5s ease-in-out;
+        backdrop-filter: blur(5px);
+    }
+    .topBar__center {
+        display: flex;
+        color: black;
+        justify-content: center;
+        align-items: center;
+        margin-right: 0;
+    }
+    .topList__item {
+        text-align: center;
+    }
+
+    .topBar__right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .topList {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+    }
+    .topList__item {
+        padding: 20px 0;
+        border-bottom: 1px solid rgba(68, 68, 68, 0.11);
+    }
+    .searchIcon {
+        display: none;
+    }
+
+    .close__icon {
+        display: block;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
+        color: rgba(0, 0, 0, 0.437);
+    }
+    .menu__icon {
+        display: block;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+    #hidden {
+        transform: translateX(-300px);
+    }
+    .topBar__image__container {
+        display: none;
     }
 }
-
-@media (min-width: 600px) {
-   
-} */

@@ -10,7 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { LS } from "../../config";
 const Settings = () => {
-    const { user, dispatch } = useContext(Context);
+    const { user, dispatch,error } = useContext(Context);
     // console.log(user);
     const [file, setFile] = useState(null);
     const [username, setUsername] = useState(user.username);
@@ -30,6 +30,8 @@ const Settings = () => {
             theme: "light",
         });
     };
+
+    // !do  stop the loader when any error detected while updating profile
     console.log(username);
     const PF = LS;
 
@@ -51,6 +53,7 @@ const Settings = () => {
             console.log(res.data.updateProfile);
         } catch (error) {
             dispatch({ type: "UPDATE_FAILURE" });
+            setLoading(false);
             console.log(error);
         }
     };

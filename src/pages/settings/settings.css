@@ -19,14 +19,13 @@
     font-size: 30px;
     margin-bottom: 20px;
     color: lightcoral;
-
 }
 
 .settings__deleteTitle {
     font-size: 13px;
     color: red;
     cursor: pointer;
-    text-shadow: .1px .1px 1px;
+    text-shadow: 0.1px 0.1px 1px;
 }
 
 .settings__ppImg {
@@ -63,7 +62,7 @@
     color: gray;
     margin: 10px 0;
     border-radius: 3px;
-    border-bottom: .8px solid lightgray;
+    border-bottom: 0.8px solid lightgray;
 }
 
 .settings__submit {
@@ -75,4 +74,14 @@
     color: white;
     border-radius: 7px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    .settings__updateTitle {
+        font-size: 20px;
+    }
+    .settings__deleteTitle {
+        color: rgba(255, 0, 0, 0.666);
+        letter-spacing: 1.07px;
+    }
 }

@@ -13,10 +13,10 @@ const Write = () => {
     const { user } = useContext(Context);
     const [lag, setLag] = useState(false);
     const [loading, setLoading] = useState(false);
-    console.log(file);
 
     // console.log(user);
     const navigate = useNavigate();
+    console.log(user._id);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,15 +28,15 @@ const Write = () => {
             formData.append("title", title);
             formData.append("username", user.username);
             formData.append("desc", desc);
+            formData.append("userId", user._id);
 
             const res = await publicRequest.post("/posts", formData);
-            res.data &&  setLoading(false);
+            res.data && setLoading(false);
             res.data && navigate("/post/" + res.data.newPost._id);
             console.log(res);
         } catch (error) {
             console.log(error);
         }
-       
     };
     // const handleSubmit = async (e) => {
     //     e.preventDefault();
@@ -68,7 +68,9 @@ const Write = () => {
     // };
     return (
         <div className="write">
-            {file && <img className="write__img" src={URL.createObjectURL(file)} alt="" />}
+            <div className="write__img__container">
+                {file && <img className="write__img" src={URL.createObjectURL(file)} alt="" />}
+            </div>
 
             <form action="" className="write__form" onSubmit={handleSubmit}>
                 <div className="write__formGroup">
@@ -105,9 +107,7 @@ const Write = () => {
                     Publish
                 </button>
             </form>
-            {
-                loading ? (<Loader/>) : null
-            }
+            {loading ? <Loader /> : null}
         </div>
     );
 };

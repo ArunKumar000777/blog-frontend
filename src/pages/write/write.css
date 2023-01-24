@@ -63,3 +63,49 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+@media screen and (max-width: 600px) {
+    .write {
+        height: max-content;
+    }
+    .write__input {
+        font-size: 16px;
+        border: none;
+        padding: 0px;
+        width: 100%;
+    }
+    .write__text {
+        margin-top: 20px;
+        padding: 0 10px;
+    }
+    .write__form {
+        padding-top: 10px;
+    }
+    .write__formGroup {
+        margin-left: 0;
+        padding: 0 20px;
+        margin-top: 20px;
+    }
+    .write__submit {
+        right: 20px;
+        top: 150px;
+    }
+    .write__addIcon {
+        margin-right: 20px;
+    }
+    .write input {
+        border: 1px solid rgba(128, 128, 128, 0.114);
+        padding: 5px;
+    }
+    .write textarea {
+        border: 1px solid rgba(128, 128, 128, 0.114);
+    }
+    .write__img {
+        margin-left: 0;
+    }
+    .write__img__container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

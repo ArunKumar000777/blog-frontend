@@ -4,7 +4,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(rgba(255,255,255, .1),rgba(255,255,255, .1)) ,url('https://images.pexels.com/photos/1883386/pexels-photo-1883386.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)),
+        url("https://images.pexels.com/photos/1883386/pexels-photo-1883386.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
     background-repeat: no-repeat;
     background-position: center;
     position: relative;
@@ -16,6 +17,21 @@
     flex-direction: column;
     width: 300px;
     /* align-items: center; */
+}
+.error-message {
+    width: max-content;
+    background-color: #fce4e4;
+    border: 1px solid #fcc2c3;
+    padding: 3px 10px;
+    align-self: center;
+}
+.error-text {
+    color: #cc0033;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 20px;
+    text-shadow: 1px 1px rgba(250,250,250,.3);
 }
 
 .login__formTitle {
@@ -51,7 +67,7 @@
     cursor: not-allowed;
 }
 
-.registerButton{
+.registerButton {
     position: absolute;
     top: 30px;
     right: 30px;
@@ -64,12 +80,10 @@
     color: white;
     cursor: pointer;
 }
-.loader__login{
+.loader__login {
     position: absolute;
 }
 
 ::-webkit-input-placeholder {
     padding-left: 7px;
-  }
-
-  
+}

@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import "./login.css";
 import { Link } from "react-router-dom";
 import { LoginFailure, LoginStart, LoginSuccess } from "../../context/Actions";
@@ -10,7 +10,8 @@ const Login = () => {
     const userRef = useRef();
     const passwordRef = useRef();
     const { user, isFetching, dispatch } = useContext(Context);
-
+    const [error, setError] = useState("");
+    console.log(error);
     const handleSubmit = async (e) => {
         e.preventDefault();
         dispatch(LoginStart());
@@ -19,9 +20,12 @@ const Login = () => {
                 username: userRef.current.value,
                 password: passwordRef.current.value,
             });
+            console.log(res);
             dispatch(LoginSuccess(res.data));
             // dispatch( {type:"LOGIN_SUCCESS",payload:res.data});
         } catch (error) {
+            setError(error.response.data.message);
+            console.log(error.response.data.message);
             dispatch(LoginFailure());
         }
     };
@@ -44,6 +48,9 @@ const Login = () => {
             )}
             <form className="login__form" onSubmit={handleSubmit}>
                 <h1 className="login__formTitle">Login </h1>
+                <div className="error-message">
+                    <span className="error-text">{error}</span>
+                </div>
                 <label>Username</label>
                 <input type="text" placeholder="Enter your username..." ref={userRef} />
                 <label>Password</label>
