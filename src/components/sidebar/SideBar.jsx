@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./sidebar.css";
-import { Facebook, Twitter, Pinterest, Instagram, Search } from "@mui/icons-material";
+import { Facebook, Twitter, Pinterest, Instagram } from "@mui/icons-material";
 
 import { publicRequest } from "../../requestMethods";
 
@@ -13,7 +13,6 @@ const SideBar = () => {
         };
         getCats();
     }, []);
-    // console.log(cats);
 
     return (
         <div className="sidebar">

@@ -1,22 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import "./post.css";
 import { Link } from "react-router-dom";
-import { LS } from "../../config";
-import { Context } from "../../context/Context";
-import { publicRequest } from "../../requestMethods";
 
 const Post = ({ post }) => {
-    // const { user } = useContext(Context);
-    // useEffect(() => {
-    //     const getPostOwner = async () => {
-    //         const res = await publicRequest("/users/" + user._id);
-    //         console.log(res);
-    //     };
-    //     getPostOwner()
-    // }, []);
-    // console.log(post)
-    // const PF = "http://localhost:5000/images/"
-    const PF = LS;
+  
     return (
         <div className="post">
             <Link to={`/post/${post._id}`}>

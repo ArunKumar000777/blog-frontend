@@ -31,7 +31,7 @@ a {
     padding: 0;
     list-style: none;
     justify-content: center;
-    gap: 30px;
+    gap: 60px;
 }
 .topList__item {
     font-size: 16px;
@@ -60,7 +60,6 @@ a {
     color: black;
     justify-content: center;
     align-items: center;
-    margin-right: 200px;
 }
 
 .topBar__right {
@@ -70,8 +69,8 @@ a {
     justify-content: center;
 }
 .userImage {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     object-fit: cover;
     border-radius: 50%;
     cursor: pointer;
@@ -111,6 +110,8 @@ a {
         display: none;
     }
     .navlinks__container {
+        background: rgba(0, 0, 0, 0.58);
+        backdrop-filter: saturate(180%) blur(7px);
         display: flex;
         flex-direction: column;
         flex: 0;
@@ -120,7 +121,7 @@ a {
         width: 200px;
         padding: 15px 0;
         transition: transform 0.5s ease-in-out;
-        backdrop-filter: blur(5px);
+        /* backdrop-filter: blur(5px); */
     }
     .topBar__center {
         display: flex;
@@ -131,6 +132,10 @@ a {
     }
     .topList__item {
         text-align: center;
+        color: rgba(255, 255, 255, 0.711);
+    }
+    .topList__item:hover{
+        color: rgba(255, 255, 255, 0.474);
     }
 
     .topBar__right {
@@ -145,7 +150,7 @@ a {
     }
     .topList__item {
         padding: 20px 0;
-        border-bottom: 1px solid rgba(68, 68, 68, 0.11);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.11);
     }
     .searchIcon {
         display: none;
@@ -157,7 +162,8 @@ a {
         top: 5px;
         right: 5px;
         cursor: pointer;
-        color: rgba(0, 0, 0, 0.437);
+        /* color: rgba(0, 0, 0, 0.437); */
+        color: rgba(255, 255, 255, 0.711);
     }
     .menu__icon {
         display: block;
@@ -169,5 +175,11 @@ a {
     }
     .topBar__image__container {
         display: none;
+    }
+    .userImage {
+        width: 30px;
+        height: 30px;
+        margin-top: 5px;
+        
     }
 }

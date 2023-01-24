@@ -2,30 +2,39 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./register.css";
 import { axiosInstance } from "../../config";
+import { ToastContainer, toast } from "react-toastify";
 
 const Register = () => {
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
-    const [error, setError] = useState(false);
     const navigate = useNavigate();
+    const notify = (errorMsg) => {
+        toast.error(`${errorMsg}`, {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
+    };
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(false);
         try {
-            const res = await axiosInstance.post("auth/register", {
+            await axiosInstance.post("auth/register", {
                 username,
                 email,
                 password,
             });
-            // console.log(res);
-            // res.data && window.location.replace("/login");
             navigate("/login");
         } catch (error) {
-            setError(true);
-            // console.log(error);
+            notify(error?.response?.data?.message);
         }
     };
+
     return (
         <div className="register">
             <form className="register__form" onSubmit={handleSubmit}>
@@ -48,7 +57,18 @@ const Register = () => {
                     Login
                 </Link>
             </button>
-            {error && <span className="wrong">something went wrong</span>}
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
         </div>
     );
 };

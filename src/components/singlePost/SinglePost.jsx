@@ -3,13 +3,12 @@ import "./singlePost.css";
 import { Edit, Delete } from "@mui/icons-material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Context } from "../../context/Context";
-import { LS, axiosInstance } from "../../config";
+import {  axiosInstance } from "../../config";
 
 const SinglePost = () => {
     const location = useLocation();
     const path = location.pathname.split("/")[2];
     const [post, setPost] = useState({});
-    const PF = LS;
     const { user } = useContext(Context);
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
@@ -21,7 +20,6 @@ const SinglePost = () => {
             setPost(res.data);
             setTitle(res.data.title);
             setDesc(res.data.desc);
-            console.log(res.data);
         };
         getpost();
     }, [path]);

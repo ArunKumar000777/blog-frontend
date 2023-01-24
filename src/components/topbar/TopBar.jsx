@@ -1,18 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./topbar.css";
 import { Facebook, Twitter, Pinterest, Instagram, Search } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link, useLocation } from "react-router-dom";
 import { Context } from "../../context/Context";
-import { LS } from "../../config";
-
+import dp from "../../utils/defaultProfile.png";
 const TopBar = () => {
     const { user, dispatch } = useContext(Context);
-    const [menuOpen, setMenuOpen] = useState(true);
+    const [menuOpen, setMenuOpen] = useState(false);
     const handleLogout = () => {
         dispatch({ type: "LOGOUT" });
     };
+    const ref = useRef(null);
 
     const location = useLocation();
 
@@ -20,13 +20,19 @@ const TopBar = () => {
         // function to run on route change
         setMenuOpen(false);
     }, [location]);
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClick);
+        return () => {
+            document.removeEventListener("mousedown", handleClick);
+        };
+    }, []);
 
-    const style = {
-        // Adding media query..
-        "@media screen and (max-width: 600px)": {
-            left: "5px",
-        },
-    };
+    function handleClick(e) {
+        if (ref.current && !ref.current.contains(e.target)) {
+            setMenuOpen(false);
+        }
+    }
+
     return (
         <div className="topBar">
             <div className="topBar__left">
@@ -40,12 +46,12 @@ const TopBar = () => {
             </div>
             {user ? (
                 <Link to="/settings">
-                    <div className='mobile__dp'>
-                        <img className="userImage" src={user?.profilePic} alt="DP" />
+                    <div className="mobile__dp">
+                        <img className="userImage" src={user?.profilePic ? user?.profilePic : dp} alt="DP" />
                     </div>
                 </Link>
             ) : null}
-            <div className="navlinks__container" id={menuOpen ? "" : "hidden"}>
+            <div className="navlinks__container" id={menuOpen ? "" : "hidden"} ref={ref}>
                 <div className="topBar__center">
                     <ul className="topList">
                         <div className="close__icon">
@@ -82,7 +88,7 @@ const TopBar = () => {
                     {user ? (
                         <Link to="/settings">
                             <div className="topBar__image__container">
-                                <img className="userImage" src={user?.profilePic} alt="DP" />
+                                <img className="userImage" src={user?.profilePic ? user?.profilePic : dp} alt="DP" />
                             </div>
                         </Link>
                     ) : (
