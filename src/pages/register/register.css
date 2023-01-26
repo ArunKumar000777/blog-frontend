@@ -1,6 +1,7 @@
 .register {
     width: 100%;
     height: calc(100vh - 50px);
+    /* height: 100vh; */
     display: flex;
     justify-content: center;
     align-items: center;
